@@ -7,28 +7,38 @@ import {
 
 export type Sort = "asc" | "desc";
 
+export type SortConfig = {
+  enabled: boolean;
+  initial: Sort;
+  apply: (columnName: string, sort: Sort) => void;
+};
+
 const defaultLabels: Map<Sort, string> = new Map([
   ["asc", "Ascending"],
   ["desc", "Descending"],
 ]);
 
-type SortComponentProps = {
+type SortPluginProps = {
+  enabled: boolean;
   initialSort: Sort;
-  onApply: (sort: Sort) => void;
+  columnName: string;
+  onApply: (columnName: string, sort: Sort) => void;
   sortLabels?: Map<Sort, string>;
 };
 
-export const SortComponent = ({
+export const SortPlugin = ({
+  enabled,
   initialSort,
+  columnName,
   onApply,
   sortLabels = defaultLabels,
-}: SortComponentProps) => {
+}: SortPluginProps) => {
   const [currentSort, setCurrentSort] = useState(initialSort);
 
   const apply = () => {
     const newSort = currentSort === "asc" ? "desc" : "asc";
     setCurrentSort(newSort);
-    onApply(newSort);
+    onApply(columnName, newSort);
   };
 
   const Icon =
@@ -37,7 +47,12 @@ export const SortComponent = ({
   const label = sortLabels.get(currentSort) ?? defaultLabels.get(currentSort);
 
   return (
-    <button onClick={apply} className="av-sort-button" aria-label={label}>
+    <button
+      onClick={apply}
+      className="av-sort-button"
+      aria-label={label}
+      disabled={!enabled}
+    >
       <Icon className="av-sort-icon" title={label} />
     </button>
   );

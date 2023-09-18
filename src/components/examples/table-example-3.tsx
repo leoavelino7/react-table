@@ -23,7 +23,7 @@ const birthdaySort = (rows: Row[], sort: Sort) => {
 
 type ColumnsToSort = PropToSort<Row>;
 
-export function TableExample() {
+export function TableExample3() {
   const [rows, setRows] = useState(initialRows);
 
   const applySort = (columnName: string, sort: Sort) => {
