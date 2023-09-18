@@ -7,12 +7,22 @@ import {
 
 export type Sort = "asc" | "desc";
 
+const defaultLabels: Map<Sort, string> = new Map([
+  ["asc", "Ascending"],
+  ["desc", "Descending"],
+]);
+
 type SortComponentProps = {
   initialSort: Sort;
   onApply: (sort: Sort) => void;
+  sortLabels?: Map<Sort, string>;
 };
 
-export const SortComponent = ({ initialSort, onApply }: SortComponentProps) => {
+export const SortComponent = ({
+  initialSort,
+  onApply,
+  sortLabels = defaultLabels,
+}: SortComponentProps) => {
   const [currentSort, setCurrentSort] = useState(initialSort);
 
   const apply = () => {
@@ -21,11 +31,14 @@ export const SortComponent = ({ initialSort, onApply }: SortComponentProps) => {
     onApply(newSort);
   };
 
-  const Icon = currentSort === "asc" ? AiOutlineSortAscending : AiOutlineSortDescending;
+  const Icon =
+    currentSort === "asc" ? AiOutlineSortAscending : AiOutlineSortDescending;
+
+  const label = sortLabels.get(currentSort) ?? defaultLabels.get(currentSort);
 
   return (
-    <button onClick={apply}>
-      <Icon />
+    <button onClick={apply} className="av-sort-button" aria-label={label}>
+      <Icon className="av-sort-icon" title={label} />
     </button>
   );
 };

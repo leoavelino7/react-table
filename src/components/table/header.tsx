@@ -1,3 +1,11 @@
-export const Header = ({ children }: React.PropsWithChildren) => {
-  return <thead className="av-table-header">{children}</thead>;
+type HeaderProps = React.PropsWithChildren<
+  React.HTMLAttributes<HTMLTableSectionElement>
+>;
+
+export const Header = ({ children, ...theadProps }: HeaderProps) => {
+  return (
+    <thead {...theadProps} className="av-table-header">
+      {children}
+    </thead>
+  );
 };

@@ -1,12 +1,14 @@
-import { HTMLAttributes } from "react";
+export type BodyRowProps = React.PropsWithChildren<
+  React.HTMLAttributes<HTMLTableRowElement>
+>;
 
 export const BodyRow = ({
   children,
   className = "",
-  ...props
-}: React.PropsWithChildren<HTMLAttributes<HTMLTableRowElement>>) => {
+  ...trProps
+}: BodyRowProps) => {
   return (
-    <tr {...props} className={`av-table-row ${className}`}>
+    <tr {...trProps} className={`av-table-row ${className}`}>
       {children}
     </tr>
   );

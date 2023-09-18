@@ -3,6 +3,7 @@ import { Row, createRows } from "../../libs/static-rows";
 import { Table } from "../table/table";
 import { Sort } from "../table/plugins/sort";
 import { PropToSort, sortFunction } from "../table/libs/sort-function";
+import { SortConfig } from "../table/header-cell";
 
 const initialRows = createRows(10);
 
@@ -41,51 +42,47 @@ export function TableExample() {
     setRows(newList);
   };
 
-  return (
-    <div>
-      <h1>Avelino Table</h1>
-      <Table.Root>
-        <Table.Header>
-          <Table.HeaderRow>
-            <Table.HeaderCell>ID</Table.HeaderCell>
-            <Table.HeaderCell
-              columnName="name"
-              enableSort
-              initialSort="asc"
-              applySort={applySort}
-            >
-              Name
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              enableSort
-              columnName="age"
-              initialSort="desc"
-              applySort={applySort}
-            >
-              Age
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              columnName="birthday"
-              enableSort
-              initialSort="asc"
-              applySort={applySort}
-            >
-              Birthday
-            </Table.HeaderCell>
-          </Table.HeaderRow>
-        </Table.Header>
+  const sortConfig: SortConfig = {
+    enabled: true,
+    initial: "asc",
+    apply: applySort,
+  };
 
-        <Table.Body rows={rows}>
-          {(row) => (
-            <Table.BodyRow key={row.id}>
-              <Table.BodyCell>{row.id}</Table.BodyCell>
-              <Table.BodyCell>{row.name}</Table.BodyCell>
-              <Table.BodyCell>{row.age}</Table.BodyCell>
-              <Table.BodyCell>{row.birthday}</Table.BodyCell>
-            </Table.BodyRow>
-          )}
-        </Table.Body>
-      </Table.Root>
-    </div>
+  return (
+    <Table.Root>
+      <Table.Header>
+        <Table.HeaderRow>
+          <Table.HeaderCell justify="start">ID</Table.HeaderCell>
+          <Table.HeaderCell columnName="name" sortConfig={sortConfig}>
+            Name
+          </Table.HeaderCell>
+          <Table.HeaderCell
+            justify="center"
+            columnName="age"
+            sortConfig={sortConfig}
+          >
+            Age
+          </Table.HeaderCell>
+          <Table.HeaderCell
+            justify="end"
+            columnName="birthday"
+            sortConfig={sortConfig}
+          >
+            Birthday
+          </Table.HeaderCell>
+        </Table.HeaderRow>
+      </Table.Header>
+
+      <Table.Body rows={rows}>
+        {(row) => (
+          <Table.BodyRow key={row.id}>
+            <Table.BodyCell justify="start">{row.id}</Table.BodyCell>
+            <Table.BodyCell justify="center">{row.name}</Table.BodyCell>
+            <Table.BodyCell justify="center">{row.age}</Table.BodyCell>
+            <Table.BodyCell justify="end">{row.birthday}</Table.BodyCell>
+          </Table.BodyRow>
+        )}
+      </Table.Body>
+    </Table.Root>
   );
 }
