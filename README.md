@@ -2,9 +2,9 @@
 
 Requisitos
 
-- Construir a melhor DX possível
-- Código simples
-- Extensível a temas
+- Construir a melhor DX possível Ok
+- Código simples Ok
+- Extensível a temas Ok
     - Customização de aparência
     - Extensibilidade via CSS e HTML dataset (radix-ui)
 - Controle de estado para filtros

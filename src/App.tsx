@@ -1,11 +1,13 @@
 import { useState } from "react";
 
 import { TableSimple } from "./components/examples/table-simple";
+// import { TableSimpleVirtualized } from "./components/examples/table-simple-virtualized";
+import { TableSimpleFiltered } from "./components/examples/table-simple-filtered";
 
 const options = [
   { value: "TableSimple", name: "Tabela" },
-  // { value: "table-virtualized", name: "Tabela (Virtualizada)" },
-  // { value: "table-filtered", name: "Tabela (Filtro)" },
+  // { value: "TableSimpleVirtualized", name: "Tabela (Virtualizada)" },
+  { value: "TableSimpleFiltered", name: "Tabela (Filtro)" },
   // {
   //   value: "table-virtualized-filtered",
   //   name: "Tabela (Virtualizada + Filtro)",
@@ -29,6 +31,8 @@ type Options = (typeof options)[number]["value"];
 
 const componentsMap = new Map<Options, () => JSX.Element>([
   ["TableSimple", TableSimple],
+  // ["TableSimpleVirtualized", TableSimpleVirtualized],
+  ["TableSimpleFiltered", TableSimpleFiltered]
 ]);
 
 type SelectProps = {
@@ -59,6 +63,12 @@ export default function App() {
     <div>
       <Select value={selected} onChange={setSelected} />
       <Component />
+
+      <form className="av-form-filter">
+        <fieldset>
+          <label>Filter</label>
+        </fieldset>
+      </form>
     </div>
   );
 }
