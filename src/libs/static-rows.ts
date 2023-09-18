@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-type Row = {
+export type Row = {
   id: string;
   name: string;
   age: number;

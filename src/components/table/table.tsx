@@ -1,15 +1,17 @@
 import { Body } from "./body";
-import { Cell } from "./cell";
+import { BodyCell } from "./body-cell";
 import { Header } from "./header";
-import { HeaderColumn } from "./header-column";
+import { HeaderRow } from "./header-row";
+import { HeaderCell } from "./header-cell";
 import { Root } from "./root";
-import { Row } from "./row";
+import { BodyRow } from "./body-row";
 
 export const Table = {
   Root,
   Header,
-  HeaderColumn,
+  HeaderRow,
+  HeaderCell,
   Body,
-  Row,
-  Cell,
+  BodyRow,
+  BodyCell,
 };

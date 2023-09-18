@@ -52,6 +52,13 @@ body {
   outline: 0;
 }
 
+.av-table-header-row {
+  color: inherit;
+  display: contents;
+  vertical-align: middle;
+  outline: 0;
+}
+
 .av-table-cell,
 .av-table-header-column {
   font-size: 0.875rem;

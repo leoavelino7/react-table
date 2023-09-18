@@ -1,12 +1,12 @@
 import { HTMLAttributes } from "react";
 
-export const Row = ({
+export const HeaderRow = ({
   children,
   className = "",
   ...props
 }: React.PropsWithChildren<HTMLAttributes<HTMLTableRowElement>>) => {
   return (
-    <tr {...props} className={`av-table-row ${className}`}>
+    <tr {...props} className={`av-table-header-row ${className}`}>
       {children}
     </tr>
   );
