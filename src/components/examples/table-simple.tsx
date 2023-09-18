@@ -13,14 +13,14 @@ export function TableSimple() {
           <Table.HeaderColumn>Age</Table.HeaderColumn>
           <Table.HeaderColumn>Birthday</Table.HeaderColumn>
         </Table.Header>
-        <Table.Body>
-          {rows.map((item) => (
+        <Table.Body rows={rows}>
+          {(item) => (
             <Table.Row key={item.id}>
               <Table.Cell>{item.name}</Table.Cell>
               <Table.Cell>{item.age}</Table.Cell>
               <Table.Cell>{item.birthday}</Table.Cell>
             </Table.Row>
-          ))}
+          )}
         </Table.Body>
       </Table.Root>
     </div>

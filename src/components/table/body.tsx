@@ -1,13 +1,21 @@
 import { ColHTMLAttributes } from "react";
 
-export const Body = ({
+type BodyProps<T> = Omit<ColHTMLAttributes<never>, "children"> & {
+  rows: T[];
+  children: (row: T, index: number) => JSX.Element;
+};
+
+export const Body = <T,>({
   children,
+  rows,
   className = "",
   ...props
-}: ColHTMLAttributes<never> & React.PropsWithChildren) => {
+}: BodyProps<T>) => {
   return (
     <tbody {...props} className={`av-table-body ${className}`}>
-      {children}
+      {rows.map((item, index) => {
+        return children(item, index);
+      })}
     </tbody>
   );
 };
