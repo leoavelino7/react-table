@@ -120,4 +120,5 @@ body {
 /* Filters */
 
 .av-filter-container {
+  display: flex;
 }
