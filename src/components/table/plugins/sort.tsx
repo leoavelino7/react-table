@@ -7,10 +7,13 @@ import {
 
 export type Sort = "asc" | "desc";
 
-export type SortConfig = {
+
+type KeyofOrType<T> = T extends object ? keyof T : T
+
+export type SortConfig<T> = {
   enabled: boolean;
   initial: Sort;
-  apply: (columnName: string, sort: Sort) => void;
+  apply: (columnName: KeyofOrType<T>, sort: Sort) => void;
 };
 
 const defaultLabels: Map<Sort, string> = new Map([
@@ -18,21 +21,21 @@ const defaultLabels: Map<Sort, string> = new Map([
   ["desc", "Descending"],
 ]);
 
-type SortPluginProps = {
+type SortPluginProps<T extends object | string> = {
   enabled: boolean;
   initialSort: Sort;
-  columnName: string;
-  onApply: (columnName: string, sort: Sort) => void;
+  columnName: KeyofOrType<T>;
+  onApply: (columnName: KeyofOrType<T>, sort: Sort) => void;
   sortLabels?: Map<Sort, string>;
 };
 
-export const SortPlugin = ({
+export const SortPlugin = <T extends object | string>({
   enabled,
   initialSort,
   columnName,
   onApply,
   sortLabels = defaultLabels,
-}: SortPluginProps) => {
+}: SortPluginProps<T>) => {
   const [currentSort, setCurrentSort] = useState(initialSort);
 
   const apply = () => {

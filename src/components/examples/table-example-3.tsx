@@ -6,7 +6,6 @@ import { SortFunctions } from "../table/libs/sort-functions";
 
 const initialRows = createRows(10);
 
-// Função customizada de ordenação
 const birthdaySort = (rows: Row[], sort: Sort) => {
   const newList = [...rows].sort((a, b) => {
     const [aDay, aMonth] = a.birthday.split("/");
@@ -21,27 +20,25 @@ const birthdaySort = (rows: Row[], sort: Sort) => {
   return sort === "asc" ? newList : newList.reverse();
 };
 
-type ColumnsToSort = SortFunctions.PropToSort<Row>;
+const sortsFn: Map<"birthday" | "default", (rows: Row[], columnName: keyof Row, sort: Sort) => Row[]> = new Map([
+  ["birthday", (rows, _, sort) => birthdaySort(rows, sort)],
+  ["default", SortFunctions.orderBy]
+]);
+
+const getSortFn = (key: string) => {
+  return sortsFn.get(key as never) ?? sortsFn.get('default') as (rows: Row[], columnName: keyof Row, sort: Sort) => Row[];
+}
 
 export function TableExample3() {
   const [rows, setRows] = useState(initialRows);
 
-  const applySort = (columnName: string, sort: Sort) => {
-    if (columnName === "birthday") {
-      const newList = birthdaySort(rows, sort);
-      setRows(newList);
-      return;
-    }
-
-    const newList = SortFunctions.orderBy(
-      initialRows,
-      columnName as ColumnsToSort,
-      sort
-    );
+  const applySort = (columnName: keyof Row, sort: Sort) => {
+    const fn = getSortFn(columnName);
+    const newList = fn(initialRows, columnName, sort);
     setRows(newList);
   };
 
-  const sortConfig: SortConfig = {
+  const sortConfig: SortConfig<Row> = {
     enabled: true,
     initial: "asc",
     apply: applySort,
