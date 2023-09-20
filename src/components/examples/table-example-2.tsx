@@ -24,16 +24,6 @@ export function TableExample2() {
           </TableSortPlugin.HeaderCell>
 
           <TableSortPlugin.HeaderCell<Row>
-            columnName="name"
-            enabled={false}
-            initialSort="asc"
-            rows={rows}
-            onApply={setRows}
-          >
-            Age
-          </TableSortPlugin.HeaderCell>
-
-          <TableSortPlugin.HeaderCell<Row>
             justify="center"
             columnName="age"
             enabled={false}
