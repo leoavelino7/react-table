@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Row, createRows } from "../../libs/static-rows";
 import { Table } from "../table/table";
 import { Sort, SortConfig, SortPlugin } from "../table/plugins/sort";
-import { PropToSort, sortFunction } from "../table/libs/sort-function";
+import { SortFunctions } from "../table/libs/sort-functions";
 
 const initialRows = createRows(10);
 
@@ -21,7 +21,7 @@ const birthdaySort = (rows: Row[], sort: Sort) => {
   return sort === "asc" ? newList : newList.reverse();
 };
 
-type ColumnsToSort = PropToSort<Row>;
+type ColumnsToSort = SortFunctions.PropToSort<Row>;
 
 export function TableExample3() {
   const [rows, setRows] = useState(initialRows);
@@ -33,7 +33,7 @@ export function TableExample3() {
       return;
     }
 
-    const newList = sortFunction(
+    const newList = SortFunctions.orderBy(
       initialRows,
       columnName as ColumnsToSort,
       sort

@@ -1,10 +1,10 @@
 import { HeaderCellProps } from "../header-cell";
-import { PropToSort, sortFunction } from "../libs/sort-function";
+import { SortFunctions } from "../libs/sort-functions";
 import { Table } from "../table";
 import { Sort, SortPlugin } from "./sort";
 
 type SortProps<Row extends object> = {
-  columnName: PropToSort<Row>;
+  columnName: SortFunctions.PropToSort<Row>;
   enabled: boolean;
   rows: Row[];
   initialSort: Sort;
@@ -24,8 +24,7 @@ const HeaderCell = <Row extends object>({
   ...props
 }: HeaderCellWithSortProps<Row>) => {
   const apply = (_: string, sort: Sort) => {
-    const rowsSorted = sortFunction(rows, columnName, sort);
-
+    const rowsSorted = SortFunctions.orderBy(rows, columnName, sort);
     onApply(rowsSorted);
   };
 
