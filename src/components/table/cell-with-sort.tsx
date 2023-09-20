@@ -3,7 +3,7 @@ import { SortFunctions } from "./libs/sort-functions";
 import { Table } from "./table";
 import { Sort, SortPlugin } from "./plugins/sort";
 
-type SortProps<Row extends object> = {
+export type SortProps<Row extends object> = {
   columnName: SortFunctions.PropToSort<Row>;
   enabled: boolean;
   rows: Row[];

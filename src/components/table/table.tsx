@@ -4,6 +4,8 @@ import { Body } from "./body";
 import { Row } from "./row";
 import { Cell } from "./cell";
 import { CellWithSort } from "./cell-with-sort";
+import { CellWithFilter } from "./cell-with-filter";
+import { CellAdvanced } from "./cell-advanced";
 
 export const Table = {
   Root,
@@ -12,4 +14,6 @@ export const Table = {
   Row,
   Cell,
   CellWithSort,
+  CellWithFilter,
+  CellAdvanced,
 };

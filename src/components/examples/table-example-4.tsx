@@ -3,17 +3,8 @@ import { Row, createRows } from "../../libs/static-rows";
 import { Table } from "../table/table";
 import { Sort, SortConfig, SortPlugin } from "../table/plugins/sort";
 import { SortFunctions } from "../table/libs/sort-functions";
-import { Filter, FilterPlugin } from "../table/plugins/filter";
+import { FilterPlugin } from "../table/plugins/filter";
 import { FiltersFunctions } from "../table/libs/filter-functions";
-
-const functionsMap = new Map<Filter, FiltersFunctions.FilterFn>([
-  ["contains", FiltersFunctions.contains],
-  ["lessThan", FiltersFunctions.lessThan],
-  ["lessOrEqualThan", FiltersFunctions.lessOrEqualThan],
-  ["biggerThan", FiltersFunctions.biggerThan],
-  ["biggerOrEqualThan", FiltersFunctions.biggerOrEqualThan],
-  ["equals", FiltersFunctions.equals],
-]);
 
 const initialRows = createRows(10);
 
@@ -39,10 +30,10 @@ export function TableExample4() {
 
   const applyFilter = (
     columnName: string,
-    filterSelected: Filter,
+    filterSelected: FiltersFunctions.Filter,
     value: string
   ) => {
-    const filterFn = functionsMap.get(filterSelected);
+    const filterFn = FiltersFunctions.functionsMap.get(filterSelected);
 
     if (!filterFn) return setRows(initialRows);
 

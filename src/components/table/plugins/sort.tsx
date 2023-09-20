@@ -21,7 +21,7 @@ const defaultLabels: Map<Sort, string> = new Map([
   ["desc", "Descending"],
 ]);
 
-type SortPluginProps<T extends object | string> = {
+export type SortPluginProps<T extends object | string> = {
   enabled: boolean;
   initialSort: Sort;
   columnName: KeyofOrType<T>;

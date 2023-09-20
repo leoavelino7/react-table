@@ -1,21 +1,15 @@
-export type Filter =
-  | "lessThan"
-  | "lessOrEqualThan"
-  | "biggerThan"
-  | "biggerOrEqualThan"
-  | "contains"
-  | "equals";
+import { FiltersFunctions } from "../libs/filter-functions";
 
-type FilterPluginProps = {
+export type FilterPluginProps = {
   enabled: boolean;
-  initialFilter: Filter;
+  initialFilter: FiltersFunctions.Filter;
   defaultValue: string;
   columnName: string;
-  onApply: (columnName: string, filterSelected: Filter, value: string) => void;
+  onApply: (columnName: string, filterSelected: FiltersFunctions.Filter, value: string) => void;
 };
 
 type Option = {
-  value: Filter;
+  value: FiltersFunctions.Filter;
   label: string;
 };
 
@@ -40,7 +34,7 @@ export const FilterPlugin = ({
     const valueElement = elements.namedItem("value") as HTMLInputElement;
 
     if (filterElement && valueElement) {
-      onApply(columnName, filterElement.value as Filter, valueElement.value);
+      onApply(columnName, filterElement.value as FiltersFunctions.Filter, valueElement.value);
     }
   };
 
@@ -53,7 +47,7 @@ export const FilterPlugin = ({
     getElementsAndApply(e.currentTarget.elements);
   };
 
-  const removeFilter = () => onApply(columnName, "" as Filter, "");
+  const removeFilter = () => onApply(columnName, "" as FiltersFunctions.Filter, "");
 
   return (
     <div className="av-filter-container">

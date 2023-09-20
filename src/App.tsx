@@ -4,6 +4,7 @@ import { TableExample1 } from "./components/examples/table-example-1";
 import { TableExample2 } from "./components/examples/table-example-2";
 import { TableExample3 } from "./components/examples/table-example-3";
 import { TableExample4 } from "./components/examples/table-example-4";
+import { TableExample5 } from "./components/examples/table-example-5";
 import { AppTheme } from "./components/app-theme";
 
 type Examples =
@@ -11,7 +12,8 @@ type Examples =
   | "TableExample1"
   | "TableExample2"
   | "TableExample3"
-  | "TableExample4";
+  | "TableExample4"
+  | "TableExample5";
 
 type Option = {
   value: Examples;
@@ -24,6 +26,7 @@ const options: Option[] = [
   { value: "TableExample2", label: "Tabela + sort (já integrado)" },
   { value: "TableExample3", label: "" },
   { value: "TableExample4", label: "Tabela + sort + filtro" },
+  { value: "TableExample5", label: "Tabela + sort + filtro (abstraido)" },
 ];
 
 const componentMap: Map<Examples, () => JSX.Element> = new Map([
@@ -32,6 +35,7 @@ const componentMap: Map<Examples, () => JSX.Element> = new Map([
   ["TableExample2", TableExample2],
   ["TableExample3", TableExample3],
   ["TableExample4", TableExample4],
+  ["TableExample5", TableExample5],
 ]);
 
 export default function App() {
