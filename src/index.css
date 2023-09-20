@@ -47,7 +47,6 @@ body {
 .av-table-header,
 .av-table-row {
   color: inherit;
-  display: table-row;
   vertical-align: middle;
   outline: 0;
 }
@@ -59,8 +58,7 @@ body {
   outline: 0;
 }
 
-.av-table-cell,
-.av-table-header-column {
+.av-table-cell {
   font-size: 0.875rem;
   line-height: 1.5rem;
   letter-spacing: 0.01071em;

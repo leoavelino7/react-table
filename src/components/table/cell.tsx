@@ -1,31 +1,36 @@
 import classNames from "classnames";
 
-export type HeaderCellProps = Partial<{
+export type CellProps = Partial<{
   justify: "center" | "start" | "end";
   containerProps: React.HTMLAttributes<HTMLDivElement>;
+  as: React.ElementType;
 }> &
   React.PropsWithChildren<React.HTMLAttributes<HTMLTableCellElement>>;
 
-export const HeaderCell = ({
+export const Cell = ({
   children,
   justify,
   containerProps,
+  as,
   ...thProps
-}: HeaderCellProps) => {
+}: CellProps) => {
+  const Tag = as || "td";
+
   const className = classNames(
     {
       "justify-center": justify === "center",
       "justify-start": justify === "start",
       "justify-end": justify === "end",
+      "av-table-header-column": as === "th",
     },
-    "av-table-header-column"
+    "av-table-cell"
   );
 
   return (
-    <th {...thProps}>
+    <Tag {...thProps}>
       <div {...containerProps} className={className}>
         {children}
       </div>
-    </th>
+    </Tag>
   );
 };

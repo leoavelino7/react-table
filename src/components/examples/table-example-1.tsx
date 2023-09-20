@@ -7,22 +7,22 @@ export function TableExample1() {
   return (
     <Table.Root>
       <Table.Header>
-        <Table.HeaderRow>
-          <Table.HeaderCell>ID</Table.HeaderCell>
-          <Table.HeaderCell>Name</Table.HeaderCell>
-          <Table.HeaderCell>Age</Table.HeaderCell>
-          <Table.HeaderCell>Birthday</Table.HeaderCell>
-        </Table.HeaderRow>
+        <Table.Row>
+          <Table.Cell as="th">ID</Table.Cell>
+          <Table.Cell as="th">Name</Table.Cell>
+          <Table.Cell as="th">Age</Table.Cell>
+          <Table.Cell as="th">Birthday</Table.Cell>
+        </Table.Row>
       </Table.Header>
 
       <Table.Body rows={initialRows}>
         {(row) => (
-          <Table.BodyRow key={row.id}>
-            <Table.BodyCell>{row.id}</Table.BodyCell>
-            <Table.BodyCell>{row.name}</Table.BodyCell>
-            <Table.BodyCell>{row.age}</Table.BodyCell>
-            <Table.BodyCell>{row.birthday}</Table.BodyCell>
-          </Table.BodyRow>
+          <Table.Row key={row.id}>
+            <Table.Cell>{row.id}</Table.Cell>
+            <Table.Cell>{row.name}</Table.Cell>
+            <Table.Cell>{row.age}</Table.Cell>
+            <Table.Cell>{row.birthday}</Table.Cell>
+          </Table.Row>
         )}
       </Table.Body>
     </Table.Root>

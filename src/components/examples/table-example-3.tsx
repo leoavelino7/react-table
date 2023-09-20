@@ -47,9 +47,9 @@ export function TableExample3() {
   return (
     <Table.Root>
       <Table.Header>
-        <Table.HeaderRow>
-          <Table.HeaderCell justify="start">ID</Table.HeaderCell>
-          <Table.HeaderCell>
+        <Table.Row>
+          <Table.Cell as="th" justify="start">ID</Table.Cell>
+          <Table.Cell as="th">
             Name
             <SortPlugin
               enabled
@@ -57,8 +57,8 @@ export function TableExample3() {
               initialSort={sortConfig.initial}
               onApply={sortConfig.apply}
             />
-          </Table.HeaderCell>
-          <Table.HeaderCell justify="center">
+          </Table.Cell>
+          <Table.Cell as="th" justify="center">
             Age
             <SortPlugin
               enabled={false}
@@ -66,8 +66,8 @@ export function TableExample3() {
               initialSort={sortConfig.initial}
               onApply={sortConfig.apply}
             />
-          </Table.HeaderCell>
-          <Table.HeaderCell justify="end">
+          </Table.Cell>
+          <Table.Cell as="th" justify="end">
             Birthday
             <SortPlugin
               enabled
@@ -75,18 +75,18 @@ export function TableExample3() {
               initialSort={sortConfig.initial}
               onApply={sortConfig.apply}
             />
-          </Table.HeaderCell>
-        </Table.HeaderRow>
+          </Table.Cell>
+        </Table.Row>
       </Table.Header>
 
       <Table.Body rows={rows}>
         {(row) => (
-          <Table.BodyRow key={row.id}>
-            <Table.BodyCell justify="start">{row.id}</Table.BodyCell>
-            <Table.BodyCell justify="center">{row.name}</Table.BodyCell>
-            <Table.BodyCell justify="center">{row.age}</Table.BodyCell>
-            <Table.BodyCell justify="end">{row.birthday}</Table.BodyCell>
-          </Table.BodyRow>
+          <Table.Row key={row.id}>
+            <Table.Cell justify="start">{row.id}</Table.Cell>
+            <Table.Cell justify="center">{row.name}</Table.Cell>
+            <Table.Cell justify="center">{row.age}</Table.Cell>
+            <Table.Cell justify="end">{row.birthday}</Table.Cell>
+          </Table.Row>
         )}
       </Table.Body>
     </Table.Root>
