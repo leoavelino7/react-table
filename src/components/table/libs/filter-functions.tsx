@@ -1,3 +1,5 @@
+import Fuse from "fuse.js";
+
 export namespace FiltersFunctions {
   const toLowercase = (value: string) => value.toLowerCase();
   export type Filter =
@@ -6,7 +8,8 @@ export namespace FiltersFunctions {
   | "biggerThan"
   | "biggerOrEqualThan"
   | "contains"
-  | "equals";
+  | "equals"
+  | "fuzzySearch";
 
   export type FilterFn = <T extends object>(
     list: T[],
@@ -48,6 +51,14 @@ export namespace FiltersFunctions {
     return list.filter((item) => (item[prop] as number) >= valueToCompare);
   };
 
+  export const fuzzySearch: FilterFn = (list, prop, value) => {
+    const fuse = new Fuse(list, {
+      keys: [prop as string]
+    });
+
+    return fuse.search(value as string).map(item => item.item);
+  }
+
   export const functionsMap = new Map<Filter, FiltersFunctions.FilterFn>([
     ["contains", FiltersFunctions.contains],
     ["lessThan", FiltersFunctions.lessThan],
@@ -55,5 +66,6 @@ export namespace FiltersFunctions {
     ["biggerThan", FiltersFunctions.biggerThan],
     ["biggerOrEqualThan", FiltersFunctions.biggerOrEqualThan],
     ["equals", FiltersFunctions.equals],
+    ["fuzzySearch", FiltersFunctions.fuzzySearch],
   ]);
 }

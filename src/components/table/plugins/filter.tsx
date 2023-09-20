@@ -20,6 +20,7 @@ const options: Option[] = [
   { value: "biggerOrEqualThan", label: "bigger or equal than" },
   { value: "contains", label: "Contains" },
   { value: "equals", label: "Equals" },
+  { value: "fuzzySearch", label: "Fuzzy Search" },
 ];
 
 export const FilterPlugin = ({

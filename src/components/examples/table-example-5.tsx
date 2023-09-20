@@ -20,6 +20,7 @@ export function TableExample5() {
             initialRows={initialRows}
             setRows={setRows}
             filter={{
+              show: true,
               initial: "contains",
             }}
           >
