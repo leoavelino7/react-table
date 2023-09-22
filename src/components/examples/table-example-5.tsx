@@ -8,16 +8,17 @@ export function TableExample5() {
   const [rows, setRows] = useState(initialRows);
 
   return (
-    <Table.Root>
+    <Table.Root withRowBorders withStripes>
       <Table.Header>
         <Table.Row>
-          <Table.Cell as="th" justify="start">
+          <Table.Cell as="th" alignText="start">
             ID
           </Table.Cell>
           <Table.CellAdvanced<Row>
             columnName="name"
             initialRows={initialRows}
             setRows={setRows}
+            sort={{ show: false }}
             filter={{
               show: true,
               initial: "contains",
@@ -26,15 +27,17 @@ export function TableExample5() {
             Name
           </Table.CellAdvanced>
           <Table.CellAdvanced<Row>
-            justify="center"
+            alignText="center"
             columnName="age"
             initialRows={initialRows}
             setRows={setRows}
+            sort={{ show: false }}
+            filter={{ show: false }}
           >
             Age
           </Table.CellAdvanced>
           <Table.CellAdvanced<Row>
-            justify="end"
+            alignText="center"
             columnName="birthday"
             initialRows={initialRows}
             setRows={setRows}
@@ -49,10 +52,10 @@ export function TableExample5() {
       <Table.Body>
         {rows.map((row) => (
           <Table.Row key={row.id}>
-            <Table.Cell justify="start">{row.id}</Table.Cell>
-            <Table.Cell justify="center">{row.name}</Table.Cell>
-            <Table.Cell justify="center">{row.age}</Table.Cell>
-            <Table.Cell justify="end">{row.birthday}</Table.Cell>
+            <Table.Cell alignText="start">{row.id}</Table.Cell>
+            <Table.Cell alignText="center">{row.name}</Table.Cell>
+            <Table.Cell alignText="center">{row.age}</Table.Cell>
+            <Table.Cell alignText="end">{row.birthday}</Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
