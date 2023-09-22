@@ -85,15 +85,15 @@ export function TableExample4() {
         </Table.Row>
       </Table.Header>
 
-      <Table.Body rows={rows}>
-        {(row) => (
+      <Table.Body>
+        {rows.map((row) => (
           <Table.Row key={row.id}>
             <Table.Cell justify="start">{row.id}</Table.Cell>
             <Table.Cell justify="center">{row.name}</Table.Cell>
             <Table.Cell justify="center">{row.age}</Table.Cell>
             <Table.Cell justify="end">{row.birthday}</Table.Cell>
           </Table.Row>
-        )}
+        ))}
       </Table.Body>
     </Table.Root>
   );

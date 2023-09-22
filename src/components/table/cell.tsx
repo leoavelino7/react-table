@@ -1,36 +1,31 @@
-import classNames from "classnames";
+import { Props } from "../../types";
+import { applyClassName } from "../../libs/apply-class-name";
 
-export type CellProps = Partial<{
-  justify: "center" | "start" | "end";
-  containerProps: React.HTMLAttributes<HTMLDivElement>;
-  as: React.ElementType;
-}> &
-  React.PropsWithChildren<React.HTMLAttributes<HTMLTableCellElement>>;
+export type CellProps<T extends React.ElementType = "td"> = Props<
+  T,
+  Partial<{
+    justify: "center" | "start" | "end";
+  }>
+>;
 
-export const Cell = ({
+export const Cell = <T extends React.ElementType = "td">({
   children,
   justify,
-  containerProps,
   as,
-  ...thProps
-}: CellProps) => {
-  const Tag = as || "td";
+  className = "",
+  ...props
+}: CellProps<T>) => {
+  const Component = as || "td";
 
-  const className = classNames(
-    {
-      "justify-center": justify === "center",
-      "justify-start": justify === "start",
-      "justify-end": justify === "end",
-      "av-table-header-column": as === "th",
-    },
-    "av-table-cell"
-  );
+  const _className = applyClassName(true, className, {
+    "justify-center text-center": justify === "center",
+    "justify-start text-start": justify === "start",
+    "justify-end text-end": justify === "end",
+  });
 
   return (
-    <Tag {...thProps}>
-      <div {...containerProps} className={className}>
-        {children}
-      </div>
-    </Tag>
+    <Component {...props} className={_className}>
+      {children}
+    </Component>
   );
 };

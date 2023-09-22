@@ -1,19 +1,12 @@
-type BodyProps<T> = {
-  rows: T[];
-  children: (row: T, index: number) => JSX.Element;
-} & Omit<React.HTMLAttributes<HTMLTableSectionElement>, "children">;
+import { Props } from "../../types";
 
-export const Body = <T,>({
+export type BodyProps<T extends React.ElementType> = Props<T>;
+
+export const Body = <T extends React.ElementType = "tbody">({
   children,
-  rows,
-  className = "",
-  ...tBodyProps
+  as,
+  ...props
 }: BodyProps<T>) => {
-  return (
-    <tbody {...tBodyProps} className={`av-table-body ${className}`}>
-      {rows.map((item, index) => {
-        return children(item, index);
-      })}
-    </tbody>
-  );
+  const Component = as || "tbody";
+  return <Component {...props}>{children}</Component>;
 };

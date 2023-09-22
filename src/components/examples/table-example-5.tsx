@@ -15,7 +15,6 @@ export function TableExample5() {
             ID
           </Table.Cell>
           <Table.CellAdvanced<Row>
-            as="th"
             columnName="name"
             initialRows={initialRows}
             setRows={setRows}
@@ -27,7 +26,6 @@ export function TableExample5() {
             Name
           </Table.CellAdvanced>
           <Table.CellAdvanced<Row>
-            as="th"
             justify="center"
             columnName="age"
             initialRows={initialRows}
@@ -36,7 +34,6 @@ export function TableExample5() {
             Age
           </Table.CellAdvanced>
           <Table.CellAdvanced<Row>
-            as="th"
             justify="end"
             columnName="birthday"
             initialRows={initialRows}
@@ -49,15 +46,15 @@ export function TableExample5() {
         </Table.Row>
       </Table.Header>
 
-      <Table.Body rows={rows}>
-        {(row) => (
+      <Table.Body>
+        {rows.map((row) => (
           <Table.Row key={row.id}>
             <Table.Cell justify="start">{row.id}</Table.Cell>
             <Table.Cell justify="center">{row.name}</Table.Cell>
             <Table.Cell justify="center">{row.age}</Table.Cell>
             <Table.Cell justify="end">{row.birthday}</Table.Cell>
           </Table.Row>
-        )}
+        ))}
       </Table.Body>
     </Table.Root>
   );

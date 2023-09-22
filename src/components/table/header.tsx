@@ -1,11 +1,13 @@
-type HeaderProps = React.PropsWithChildren<
-  React.HTMLAttributes<HTMLTableSectionElement>
->;
+import { Props } from "../../types";
 
-export const Header = ({ children, ...theadProps }: HeaderProps) => {
-  return (
-    <thead {...theadProps} className="av-table-header">
-      {children}
-    </thead>
-  );
+export type HeaderProps<T extends React.ElementType = "thead"> = Props<T>;
+
+export const Header = <T extends React.ElementType>({
+  children,
+  as,
+  ...props
+}: HeaderProps<T>) => {
+  const Component = as || "thead";
+
+  return <Component {...props}>{children}</Component>;
 };

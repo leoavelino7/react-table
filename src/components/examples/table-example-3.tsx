@@ -20,14 +20,24 @@ const birthdaySort = (rows: Row[], sort: Sort) => {
   return sort === "asc" ? newList : newList.reverse();
 };
 
-const sortsFn: Map<"birthday" | "default", (rows: Row[], columnName: keyof Row, sort: Sort) => Row[]> = new Map([
+const sortsFn: Map<
+  "birthday" | "default",
+  (rows: Row[], columnName: keyof Row, sort: Sort) => Row[]
+> = new Map([
   ["birthday", (rows, _, sort) => birthdaySort(rows, sort)],
-  ["default", SortFunctions.orderBy]
+  ["default", SortFunctions.orderBy],
 ]);
 
 const getSortFn = (key: string) => {
-  return sortsFn.get(key as never) ?? sortsFn.get('default') as (rows: Row[], columnName: keyof Row, sort: Sort) => Row[];
-}
+  return (
+    sortsFn.get(key as never) ??
+    (sortsFn.get("default") as (
+      rows: Row[],
+      columnName: keyof Row,
+      sort: Sort
+    ) => Row[])
+  );
+};
 
 export function TableExample3() {
   const [rows, setRows] = useState(initialRows);
@@ -48,7 +58,9 @@ export function TableExample3() {
     <Table.Root>
       <Table.Header>
         <Table.Row>
-          <Table.Cell as="th" justify="start">ID</Table.Cell>
+          <Table.Cell as="th" justify="start">
+            ID
+          </Table.Cell>
           <Table.Cell as="th">
             Name
             <SortPlugin
@@ -79,15 +91,15 @@ export function TableExample3() {
         </Table.Row>
       </Table.Header>
 
-      <Table.Body rows={rows}>
-        {(row) => (
+      <Table.Body>
+        {rows.map((row) => (
           <Table.Row key={row.id}>
             <Table.Cell justify="start">{row.id}</Table.Cell>
             <Table.Cell justify="center">{row.name}</Table.Cell>
             <Table.Cell justify="center">{row.age}</Table.Cell>
             <Table.Cell justify="end">{row.birthday}</Table.Cell>
           </Table.Row>
-        )}
+        ))}
       </Table.Body>
     </Table.Root>
   );
