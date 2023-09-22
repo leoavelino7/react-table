@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Row, createRows } from "../../libs/static-rows";
-import { Table } from "../table/table";
+import { Table } from "../table";
 import { Sort, SortConfig, SortPlugin } from "../table/plugins/sort";
 import { SortFunctions } from "../table/libs/sort-functions";
 import { FilterPlugin } from "../table/plugins/filter";

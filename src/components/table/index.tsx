@@ -1,3 +1,5 @@
+import "./index.css";
+
 import { Root } from "./root";
 import { Header } from "./header";
 import { Body } from "./body";

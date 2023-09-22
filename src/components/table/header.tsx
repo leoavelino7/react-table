@@ -9,5 +9,5 @@ export const Header = <T extends React.ElementType>({
 }: HeaderProps<T>) => {
   const Component = as || "thead";
 
-  return <Component {...props}>{children}</Component>;
+  return <Component {...props} data-component="table-header">{children}</Component>;
 };

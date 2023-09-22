@@ -1,0 +1,58 @@
+[data-component="table-wrapper"] {
+  padding: 20px;
+  background: var(--table-wrapper);
+  margin: 80px;
+}
+
+[data-component="table"] {
+  display: inline-table;
+  width: 100%;
+  font-size: 16px;
+  border-collapse: collapse;
+  border: 2px solid transparent;
+}
+
+[data-component="table"][data-with-stripes]
+  [data-component="table-body"]
+  [data-component="table-row"]:nth-child(even) {
+  background: var(--table-stripes);
+}
+
+[data-component="table"][data-with-highlight-on-hover]
+  [data-component="table-body"]
+  [data-component="table-row"]:hover {
+  background: var(--table-highlight);
+}
+
+[data-component="table"][data-with-table-border] {
+  border: 1px solid var(--table-border);
+}
+
+[data-component="table"][data-with-column-borders]
+  [data-component="table-cell"] {
+  border-right: 1px solid var(--table-column-border);
+}
+
+[data-component="table"][data-with-row-borders] [data-component="table-row"] {
+  border: 1px solid var(--table-row-border);
+}
+
+[data-component="table-row"][data-spacing="xs"] [data-component="table-cell"] {
+  padding: 10px;
+}
+
+[data-component="table-row"][data-spacing="sm"] [data-component="table-cell"] {
+  padding: 12px;
+}
+
+[data-component="table-row"][data-spacing="md"] [data-component="table-cell"] {
+  padding: 16px;
+}
+
+[data-component="table-row"][data-spacing="lg"] [data-component="table-cell"] {
+  padding: 20px;
+}
+
+[data-component="table-row"][data-spacing="xl"] [data-component="table-cell"] {
+  padding: 32px;
+}

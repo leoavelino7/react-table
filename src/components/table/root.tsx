@@ -1,5 +1,6 @@
 import { Props } from "../../types";
 import { applyClassName } from "../../libs/apply-class-name";
+import { createDataAttributes } from "../../libs/create-data-attributes";
 
 export type RootProps<T extends React.ElementType = "table"> = Props<
   T,
@@ -27,22 +28,20 @@ export const Root = <T extends React.ElementType = "table">({
 }: RootProps<T>) => {
   const Component = as || "table";
 
-  const _className = applyClassName(
-    withStyles,
-    className,
-    {
-      "av_table-root_with-stripes": withStripes,
-      "av_table-root_with-highlight-on-hover": withHighlightOnHover,
-      "av_table-root_with-table-border": withTableBorder,
-      "av_table-root_with-column-borders": withColumnBorders,
-      "av_table-root_with-row-borders": withRowBorders,
-    },
-    "av_table-root"
-  );
+  const dataAttributes = createDataAttributes({
+    component: "table",
+    "with-stripes": withStripes,
+    "with-highlight-on-hover": withHighlightOnHover,
+    "with-table-border": withTableBorder,
+    "with-column-borders": withColumnBorders,
+    "with-row-borders": withRowBorders,
+  });
+
+  const _className = applyClassName(withStyles, className);
 
   return (
-    <div className="av_table-wrapper">
-      <Component {...tableProps} className={_className}>
+    <div data-component="table-wrapper">
+      <Component {...tableProps} {...dataAttributes} className={_className}>
         {children}
       </Component>
     </div>

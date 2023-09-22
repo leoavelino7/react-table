@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Row, createRows } from "../../libs/static-rows";
-import { Table } from "../table/table";
+import { Table } from "../table";
 
 const initialRows = createRows(10);
 

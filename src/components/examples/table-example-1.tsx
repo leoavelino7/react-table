@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createRows } from "../../libs/static-rows";
-import { Table } from "../table/table";
+import { Table } from "../table";
 
 const rows = createRows(10);
 
@@ -38,11 +38,11 @@ export function TableExample1() {
 
         <Table.Body>
           {rows.map((row) => (
-            <Table.Row key={row.id}>
+            <Table.Row key={row.id} spacing="xs">
               <Table.Cell>{row.id}</Table.Cell>
               <Table.Cell>{row.name}</Table.Cell>
-              <Table.Cell justify="center">{row.age}</Table.Cell>
-              <Table.Cell justify="center">{row.birthday}</Table.Cell>
+              <Table.Cell align="center">{row.age}</Table.Cell>
+              <Table.Cell align="center">{row.birthday}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>

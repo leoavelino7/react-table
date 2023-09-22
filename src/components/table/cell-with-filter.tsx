@@ -1,5 +1,5 @@
 import { CellProps } from "./cell";
-import { Table } from "./table";
+import { Table } from ".";
 import { FilterPlugin, FilterPluginProps } from "./plugins/filter";
 import { FiltersFunctions } from "./libs/filter-functions";
 

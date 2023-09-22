@@ -8,5 +8,5 @@ export const Body = <T extends React.ElementType = "tbody">({
   ...props
 }: BodyProps<T>) => {
   const Component = as || "tbody";
-  return <Component {...props}>{children}</Component>;
+  return <Component {...props} data-component="table-body">{children}</Component>;
 };

@@ -1,4 +1,4 @@
-import { Table } from "./table";
+import { Table } from ".";
 import { Sort, SortPlugin, SortPluginProps } from "./plugins/sort";
 import { CellProps } from "./cell";
 import { SortFunctions } from "./libs/sort-functions";

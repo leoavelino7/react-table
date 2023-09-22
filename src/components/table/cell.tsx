@@ -4,13 +4,13 @@ import { applyClassName } from "../../libs/apply-class-name";
 export type CellProps<T extends React.ElementType = "td"> = Props<
   T,
   Partial<{
-    justify: "center" | "start" | "end";
+    align: "center" | "start" | "end";
   }>
 >;
 
 export const Cell = <T extends React.ElementType = "td">({
   children,
-  justify,
+  align,
   as,
   className = "",
   ...props
@@ -18,13 +18,13 @@ export const Cell = <T extends React.ElementType = "td">({
   const Component = as || "td";
 
   const _className = applyClassName(true, className, {
-    "justify-center text-center": justify === "center",
-    "justify-start text-start": justify === "start",
-    "justify-end text-end": justify === "end",
+    "text-center": align === "center",
+    "text-start": align === "start",
+    "text-end": align === "end",
   });
 
   return (
-    <Component {...props} className={_className}>
+    <Component {...props} data-component="table-cell" className={_className}>
       {children}
     </Component>
   );

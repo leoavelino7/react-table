@@ -1,6 +1,6 @@
 import { CellProps } from "./cell";
 import { SortFunctions } from "./libs/sort-functions";
-import { Table } from "./table";
+import { Table } from ".";
 import { Sort, SortPlugin } from "./plugins/sort";
 
 export type SortProps<Row extends object> = {
