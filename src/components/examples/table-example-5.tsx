@@ -18,7 +18,7 @@ export function TableExample5() {
             columnName="name"
             initialRows={initialRows}
             setRows={setRows}
-            sort={{ show: false }}
+            sort={{ show: true }}
             filter={{
               show: true,
               initial: "contains",

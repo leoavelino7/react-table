@@ -59,7 +59,7 @@ export function TableExample4() {
             <FilterPlugin
               enabled
               columnName="name"
-              defaultValue="e"
+              defaultValue=""
               initialFilter="contains"
               onApply={applyFilter}
             />

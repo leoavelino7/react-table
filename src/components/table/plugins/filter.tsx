@@ -31,8 +31,8 @@ const options: Option[] = [
 ];
 
 const defaultLabels: Map<boolean, string> = new Map([
-  [true, "Ascending"],
-  [false, "Descending"],
+  [false, "Open filter"],
+  [true, "Close filter"],
 ]);
 
 export const FilterPlugin = ({
@@ -62,6 +62,7 @@ export const FilterPlugin = ({
   const apply = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     getElementsAndApply(e.currentTarget.elements);
+    setIsOpen(false);
   };
 
   const reset = (e: React.FormEvent<HTMLFormElement>) => {
@@ -71,6 +72,7 @@ export const FilterPlugin = ({
   const removeFilter = () => {
     onApply(columnName, "" as FiltersFunctions.Filter, "");
     setValue("");
+    setIsOpen(false);
   };
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
