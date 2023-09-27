@@ -41,8 +41,8 @@ export function TableExample1() {
             <Table.Row key={row.id} spacing="xs">
               <Table.Cell>{row.id}</Table.Cell>
               <Table.Cell>{row.name}</Table.Cell>
-              <Table.Cell align="center">{row.age}</Table.Cell>
-              <Table.Cell align="center">{row.birthday}</Table.Cell>
+              <Table.Cell alignText="center">{row.age}</Table.Cell>
+              <Table.Cell alignText="center">{row.birthday}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>

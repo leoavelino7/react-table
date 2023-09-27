@@ -21,12 +21,12 @@ type Option = {
 };
 
 const options: Option[] = [
-  { value: "TableExample", label: "Tabela + sort" },
-  { value: "TableExample1", label: "Tabela" },
-  { value: "TableExample2", label: "Tabela + sort (já integrado)" },
-  { value: "TableExample3", label: "" },
-  { value: "TableExample4", label: "Tabela + sort + filtro" },
-  { value: "TableExample5", label: "Tabela + sort + filtro (abstraido)" },
+  { value: "TableExample", label: "TableExample" },
+  { value: "TableExample1", label: "TableExample1" },
+  { value: "TableExample2", label: "TableExample2" },
+  { value: "TableExample3", label: "TableExample3" },
+  { value: "TableExample4", label: "TableExample4" },
+  { value: "TableExample5", label: "TableExample5" },
 ];
 
 const componentMap: Map<Examples, () => JSX.Element> = new Map([

@@ -1,10 +1,7 @@
 import { Fragment, useState } from "react";
 import { FiltersFunctions } from "../libs/filter-functions";
 
-import { 
-  RiFilter2Fill,
-  RiFilter2Line
-} from "react-icons/ri"
+import { RiFilter2Fill, RiFilter2Line } from "react-icons/ri";
 
 export type FilterPluginProps = {
   enabled: boolean;
@@ -38,7 +35,6 @@ const defaultLabels: Map<boolean, string> = new Map([
   [false, "Descending"],
 ]);
 
-
 export const FilterPlugin = ({
   enabled,
   initialFilter,
@@ -47,6 +43,8 @@ export const FilterPlugin = ({
   onApply,
 }: FilterPluginProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [valueSelect, setValueSelect] = useState(initialFilter);
+  const [value, setValue] = useState(defaultValue);
 
   const getElementsAndApply = (elements: HTMLFormControlsCollection) => {
     const filterElement = elements.namedItem("filter") as HTMLSelectElement;
@@ -70,22 +68,28 @@ export const FilterPlugin = ({
     getElementsAndApply(e.currentTarget.elements);
   };
 
-  const removeFilter = () =>
+  const removeFilter = () => {
     onApply(columnName, "" as FiltersFunctions.Filter, "");
+    setValue("");
+  };
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
+  const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  const changeValueSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setValueSelect(e.target.value as FiltersFunctions.Filter);
+  };
+
   const Icon = isOpen ? RiFilter2Fill : RiFilter2Line;
-  
+
   const label = defaultLabels.get(isOpen);
-  
+
   return (
     <Fragment>
-      <button
-        onClick={toggleDropdown}
-        aria-label={label}
-        disabled={!enabled}
-      >
+      <button onClick={toggleDropdown} aria-label={label} disabled={!enabled}>
         <Icon className="av-sort-icon" title={label} />
       </button>
       {isOpen ? (
@@ -93,7 +97,12 @@ export const FilterPlugin = ({
           <form onSubmit={apply} onReset={reset}>
             <div className="input">
               <label htmlFor="filter">Filter</label>
-              <select id="filter" name="filter" defaultValue={initialFilter}>
+              <select
+                id="filter"
+                name="filter"
+                value={valueSelect}
+                onChange={changeValueSelect}
+              >
                 {options.map((item) => (
                   <option key={item.value} value={item.value}>
                     {item.label}
@@ -108,7 +117,8 @@ export const FilterPlugin = ({
                 name="value"
                 type="text"
                 placeholder="Value"
-                defaultValue={defaultValue}
+                onChange={changeValue}
+                value={value}
               />
             </div>
             <div className="controller">

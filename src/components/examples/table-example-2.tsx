@@ -11,7 +11,7 @@ export function TableExample2() {
     <Table.Root>
       <Table.Header>
         <Table.Row>
-          <Table.Cell as="th" justify="start">
+          <Table.Cell as="th" alignText="start">
             ID
           </Table.Cell>
           <Table.CellWithSort<Row>
@@ -25,7 +25,7 @@ export function TableExample2() {
           </Table.CellWithSort>
 
           <Table.CellWithSort<Row>
-            justify="center"
+            alignText="center"
             columnName="age"
             enabled={false}
             initialSort="asc"
@@ -35,7 +35,7 @@ export function TableExample2() {
             Age
           </Table.CellWithSort>
 
-          <Table.Cell as="th" justify="end">
+          <Table.Cell as="th" alignText="end">
             Birthday
           </Table.Cell>
         </Table.Row>
@@ -44,10 +44,10 @@ export function TableExample2() {
       <Table.Body>
         {rows.map((row) => (
           <Table.Row key={row.id}>
-            <Table.Cell justify="start">{row.id}</Table.Cell>
-            <Table.Cell justify="center">{row.name}</Table.Cell>
-            <Table.Cell justify="center">{row.age}</Table.Cell>
-            <Table.Cell justify="end">{row.birthday}</Table.Cell>
+            <Table.Cell alignText="start">{row.id}</Table.Cell>
+            <Table.Cell alignText="center">{row.name}</Table.Cell>
+            <Table.Cell alignText="center">{row.age}</Table.Cell>
+            <Table.Cell alignText="end">{row.birthday}</Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>

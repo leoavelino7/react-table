@@ -58,7 +58,7 @@ export function TableExample3() {
     <Table.Root>
       <Table.Header>
         <Table.Row>
-          <Table.Cell as="th" justify="start">
+          <Table.Cell as="th" alignText="start">
             ID
           </Table.Cell>
           <Table.Cell as="th">
@@ -70,7 +70,7 @@ export function TableExample3() {
               onApply={sortConfig.apply}
             />
           </Table.Cell>
-          <Table.Cell as="th" justify="center">
+          <Table.Cell as="th" alignText="center">
             Age
             <SortPlugin
               enabled={false}
@@ -79,7 +79,7 @@ export function TableExample3() {
               onApply={sortConfig.apply}
             />
           </Table.Cell>
-          <Table.Cell as="th" justify="end">
+          <Table.Cell as="th" alignText="end">
             Birthday
             <SortPlugin
               enabled
@@ -94,10 +94,10 @@ export function TableExample3() {
       <Table.Body>
         {rows.map((row) => (
           <Table.Row key={row.id}>
-            <Table.Cell justify="start">{row.id}</Table.Cell>
-            <Table.Cell justify="center">{row.name}</Table.Cell>
-            <Table.Cell justify="center">{row.age}</Table.Cell>
-            <Table.Cell justify="end">{row.birthday}</Table.Cell>
+            <Table.Cell alignText="start">{row.id}</Table.Cell>
+            <Table.Cell alignText="center">{row.name}</Table.Cell>
+            <Table.Cell alignText="center">{row.age}</Table.Cell>
+            <Table.Cell alignText="end">{row.birthday}</Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
